@@ -13,13 +13,11 @@ public class Role_generator {
             return null;
         }
 
-        // Создаем копию первых count ролей
+
         String[] selected_roles = new String[count];
         for (int i = 0; i < count; i++) {
             selected_roles[i] = allRoles[i];
         }
-
-        // Перемешиваем роли
         shuffle_array(selected_roles);
 
         return selected_roles;

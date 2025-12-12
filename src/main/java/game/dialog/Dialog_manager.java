@@ -45,7 +45,7 @@ public class Dialog_manager {
             } catch (NumberFormatException e) {
             }
         }
-        if (playersCount == -1) {
+        else {
             console.print("Введите количество игроков (5-19):");
             String count_input = console.read_line();
             try {
@@ -55,8 +55,6 @@ public class Dialog_manager {
                 return;
             }
         }
-
-        // Обрабатываем команду через чистую логику
         String result = dialog_logic.start_game(playersCount);
         console.print(result);
     }
