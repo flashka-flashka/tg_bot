@@ -1,41 +1,41 @@
 package game.dialog;
 
-import game.console.Console_IO;
+import game.console.ConsoleIO;
+import game.console.DefaultConsoleIO;
 
-public class Dialog_manager {
-    private  Console_IO console;
-    private  Dialog_logic dialog_logic;
-    private  String welcome_message;
-    private  String help_message;
+public class DialogManager {
+    private ConsoleIO console;
+    private DialogLogic dialogLogic;
 
-    public Dialog_manager() {
-        this.console = new Console_IO();
-        this.dialog_logic = new Dialog_logic();
+
+    public DialogManager() {
+        this.console = new DefaultConsoleIO();
+        this.dialogLogic = new DefaultDialogLogic();
 
     }
 
     public void startDialog() {
-        console.print(dialog_logic.start());
+        console.print(dialogLogic.start());
         boolean chating = true;
         while (chating) {
             console.print("\nВведите команду:");
-            String userInput = console.read_line();
+            String userInput = console.readLine();
 
             if (userInput.equals("\\help")) {
-                console.print(dialog_logic.help());
+                console.print(dialogLogic.help());
             }
             else if (userInput.startsWith("/start_game")) {
-                handle_start_game(userInput);
+                handleStartGame(userInput);
             }
             else {
-                console.print("Неизвестная команда. Введите \\help для справки");
+                console.print("Неизвестная команда. Введите \\help для справки.");
             }
         }
 
 
     }
 
-    private void handle_start_game(String input) {
+    private void handleStartGame(String input) {
         String[] parts = input.split(" ");
         int playersCount = -1;
 
@@ -47,15 +47,15 @@ public class Dialog_manager {
         }
         else {
             console.print("Введите количество игроков (5-19):");
-            String count_input = console.read_line();
+            String countInput = console.readLine();
             try {
-                playersCount = Integer.parseInt(count_input);
+                playersCount = Integer.parseInt(countInput);
             } catch (NumberFormatException e) {
                 console.print("Ошибка: введено некорректное число");
                 return;
             }
         }
-        String result = dialog_logic.start_game(playersCount);
+        String result = dialogLogic.startGame(playersCount);
         console.print(result);
     }
 

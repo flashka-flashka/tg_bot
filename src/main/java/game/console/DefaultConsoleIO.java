@@ -2,17 +2,19 @@ package game.console;
 
 import java.util.Scanner;
 
-public class Console_IO {
+public class DefaultConsoleIO implements ConsoleIO {
     private Scanner scanner;
 
-    public Console_IO() {
+    public DefaultConsoleIO() {
         this.scanner = new Scanner(System.in);
     }
 
-    public String read_line() {
+    @Override
+    public String readLine() {
         return scanner.nextLine();
     }
 
+    @Override
     public void print(String message) {
         System.out.println(message);
     }
